@@ -1,0 +1,48 @@
+name: Cypress E-commerce CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress smoke tests
+        run: npx cypress run --env tags=smoke
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          CYPRESS_username: ${{ secrets.TEST_USERNAME }}
+          CYPRESS_password: ${{ secrets.TEST_PASSWORD }}
+
+      - name: Upload screenshots on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots/
+          retention-days: 7
+
+      - name: Upload videos
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos/
+          retention-days: 7
