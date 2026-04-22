@@ -1,0 +1,23 @@
+{
+  "name": "cypress-ecommerce-automation",
+  "version": "1.0.0",
+  "description": "E-commerce automation framework using Cypress and JavaScript",
+  "scripts": {
+    "test": "npx cypress run",
+    "test:open": "npx cypress open",
+    "test:smoke": "npx cypress run --env tags=smoke",
+    "test:cart": "npx cypress run --spec 'cypress/e2e/cart/**'",
+    "test:checkout": "npx cypress run --spec 'cypress/e2e/checkout/**'",
+    "test:chrome": "npx cypress run --browser chrome",
+    "test:firefox": "npx cypress run --browser firefox",
+    "test:headless": "npx cypress run --headless",
+    "report:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/combined.json",
+    "report:generate": "marge cypress/reports/combined.json -f report -o cypress/reports"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}
