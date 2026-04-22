@@ -1,0 +1,31 @@
+{
+  "validUser": {
+    "username": "testuser@shop.com",
+    "password": "TestPass@123"
+  },
+  "invalidUser": {
+    "username": "invalid@shop.com",
+    "password": "WrongPass"
+  },
+  "products": {
+    "first": {
+      "name": "Test Product One",
+      "price": "999"
+    },
+    "second": {
+      "name": "Test Product Two",
+      "price": "1499"
+    }
+  },
+  "address": {
+    "fullName": "Test User",
+    "address": "123 Test Street",
+    "city": "Pune",
+    "pincode": "411001"
+  },
+  "payment": {
+    "cardNumber": "4111111111111111",
+    "expiry": "12/26",
+    "cvv": "123"
+  }
+}
